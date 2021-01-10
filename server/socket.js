@@ -12,20 +12,14 @@ module.exports=(server,app)=>{
     const map=io.of('/map');
 
 
-/*
-    map.use((socket,next)=>{
-        verify(socket.request,socket.request.res,next);
-    });*/
 
     map.on('connection',socket=>{
         console.log('xxxxxxxxxxxxxx');
-        //console.log(socket.request.user);
-        //if(socket.request.user){
-            //const userId=socket.request.user._id;
+        
             socket.on('position',async(data)=>{
 
                 try{
-                    console.log('yyyyyyyyyyyyyy');
+                    
                     const userId=data._id;
                     await User.findOneAndUpdate({_id:userId},
                         {longtitude:data.longtitude,latitude:data.latitude});
